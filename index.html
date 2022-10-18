@@ -12,15 +12,44 @@ body, html {
   font-family: "Inconsolata", sans-serif;
 }
 
-.bgimg {
-  background-position: center;
-  background-size: cover;
-  background-image: url("/w3images/coffeehouse.jpg");
-  min-height: 75%;
-}
-
 .menu {
   display: none;
+}
+
+.accordion {
+  background-color: #e4c49b;
+  color: #1a1a1a;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #d9ad73;
+}
+
+.accordion:after {
+  content: '\002B';
+  color: #fff;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
 }
 </style>
 </head>
@@ -30,40 +59,125 @@ body, html {
 <div class="w3-top">
   <div class="w3-row w3-padding w3-black">
     <div class="w3-col s3">
-      <a href="#" class="w3-button w3-block w3-black">HOME</a>
+      <a href="#home" class="w3-button w3-block w3-black">ASSIGNMENT #1</a>
     </div>
     <div class="w3-col s3">
-      <a href="#about" class="w3-button w3-block w3-black">ABOUT</a>
+      <a href="#assignment2" class="w3-button w3-block w3-black">ASSIGNMENT #2</a>
     </div>
     <div class="w3-col s3">
-      <a href="#menu" class="w3-button w3-block w3-black">MENU</a>
+      <a href="#assignment3" class="w3-button w3-block w3-black">ASSIGNMENT #3</a>
     </div>
     <div class="w3-col s3">
-      <a href="#where" class="w3-button w3-block w3-black">WHERE</a>
+      <a href="#assignment4" class="w3-button w3-block w3-black">ASSIGNMENT #4</a>
     </div>
   </div>
 </div>
-
-<!-- Header with image -->
-<header class="bgimg w3-display-container w3-grayscale-min" id="home">
-  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
-    <span class="w3-tag">Open from 6am to 5pm</span>
-  </div>
-  <div class="w3-display-middle w3-center">
-    <span class="w3-text-white" style="font-size:90px">the<br>Cafe</span>
-  </div>
-  <div class="w3-display-bottomright w3-center w3-padding-large">
-    <span class="w3-text-white">15 Adr street, 5015</span>
-  </div>
-</header>
-
+    
 <!-- Add a background color and large text to the whole page -->
 <div class="w3-sand w3-grayscale w3-large">
 
-<!-- About Container -->
-<div class="w3-container" id="about">
+<!-- Intro -->
+<h3 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">CS - 1130 INTRODUCTION TO COMPUTING</span></h3>
+
+<!-- Assignment #1 Container -->
+<div class="w3-container" id="home">
+  <div class="w3-content" style="max-width:700px height">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">CONVERSION</span></h5>
+    <button class="accordion">Celsius to Fahrenheit</button>
+<div class="panel">
+  <p>Type a value in the Celsius field to convert the value to Fahrenheit:</p>
+  <p>
+    <label>Celsius:</label>
+    <input id="inpCls" type="number" placeholder="Celsius">
+    <button onclick="tempConverter(this.value)">Convert</button>
+</p>
+<p>Fahrenheit: <span id="outFahrenheit"></span></p>
+
+<script>
+function tempConverter(valNum) {
+  valNum = document.getElementById("inpCls").value*1;
+  document.getElementById("outFahrenheit").innerHTML=(valNum*1.8)+32;
+}
+</script>
+</div>
+
+<button class="accordion">Fahrenheit to Celsius</button>
+<div class="panel">
+  <p>Type a value in the Fahrenheit field to convert the value to Celsius:</p>
+  <p>
+    <label>Fahrenheit:</label>
+  <input id="inputFahrenheit" type="number" placeholder="Fahrenheit">
+  <button onclick="temperatureConverter(this.value)">Covert</button>
+</p>
+<p>Celsius: <span id="outputCelsius"></span></p>
+
+<script>
+function temperatureConverter(valNum) {
+  valNum = document.getElementById("inputFahrenheit").value*1;
+  document.getElementById("outputCelsius").innerHTML=(valNum-32)/1.8;
+}
+</script>
+</div>
+
+<button class="accordion">Meters to Feet</button>
+<div class="panel">
+  <p>Type a value in the Meters field to convert the value to Feet:</p>
+  <p>
+    <label>Meters:</label>
+  <input id="inpMtrs" type="number" placeholder="Meters">
+  <button onclick="LngthConverter(this.value)">Convert</button>
+</p>
+<p>Feet: <span id="outputFeet"></span></p>
+
+<script>
+function LngthConverter(valNum) {
+  valNum = document.getElementById("inpMtrs").value*1;
+  document.getElementById("outputFeet").innerHTML=valNum*3.2808;
+}
+</script>
+</div>
+
+<button class="accordion">Feet to Meters</button>
+<div class="panel">
+  <p>Type a value in the Feet field to convert the value to Meters:</p>
+  <p>
+    <label>Feet:</label>
+  <input id="inputFeet" type="number" placeholder="Feet">
+  <button onclick="LengthConverter(this.value)">Convert</button>
+</p>
+<p>Meters: <span id="outputMeters"></span></p>
+
+<script>
+function LengthConverter(valNum) {
+  valNum = document.getElementById("inputFeet").value*1;
+  document.getElementById("outputMeters").innerHTML=valNum/3.2808;
+}
+</script>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+  </div>
+</div>
+
+<!-- Assignment #2 Container -->
+<div class="w3-container" id="assignment2">
   <div class="w3-content" style="max-width:700px">
-    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ABOUT THE CAFE</span></h5>
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">INCOME TAX CALCULATOR</span></h5>
     <p>The Cafe was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     <p>In addition to our full espresso and brew bar menu, we serve fresh made-to-order breakfast and lunch sandwiches, as well as a selection of sides and salads and other good stuff.</p>
     <div class="w3-panel w3-leftbar w3-light-grey">
@@ -77,7 +191,7 @@ body, html {
 </div>
 
 <!-- Menu Container -->
-<div class="w3-container" id="menu">
+<div class="w3-container" id="assignment3">
   <div class="w3-content" style="max-width:700px">
  
     <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">THE MENU</span></h5>
@@ -129,7 +243,7 @@ body, html {
 </div>
 
 <!-- Contact/Area Container -->
-<div class="w3-container" id="where" style="padding-bottom:32px;">
+<div class="w3-container" id="assignment4" style="padding-bottom:32px;">
   <div class="w3-content" style="max-width:700px">
     <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">WHERE TO FIND US</span></h5>
     <p>Find us at some address at some place.</p>
