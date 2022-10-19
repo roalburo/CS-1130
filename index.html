@@ -12,6 +12,14 @@ body, html {
   font-family: "Inconsolata", sans-serif;
 }
 
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://wallpaperaccess.com/full/302495.jpg");
+  min-height: 75%;
+  opacity: 0.8;
+}
+
 .menu {
   display: none;
 }
@@ -59,7 +67,7 @@ body, html {
 <div class="w3-top">
   <div class="w3-row w3-padding w3-black">
     <div class="w3-col s3">
-      <a href="#home" class="w3-button w3-block w3-black">ASSIGNMENT #1</a>
+      <a href="#assignment1" class="w3-button w3-block w3-black">ASSIGNMENT #1</a>
     </div>
     <div class="w3-col s3">
       <a href="#assignment2" class="w3-button w3-block w3-black">ASSIGNMENT #2</a>
@@ -72,15 +80,19 @@ body, html {
     </div>
   </div>
 </div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-middle w3-center w3-padding-64">
+    <span class="w3-text-white" style="font-size:35px">CS - 1130<br>INTRODUCTION TO COMPUTING</span>
+  </div>
+</header>
     
 <!-- Add a background color and large text to the whole page -->
 <div class="w3-sand w3-grayscale w3-large">
 
-<!-- Intro -->
-<h3 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">CS - 1130 INTRODUCTION TO COMPUTING</span></h3>
-
 <!-- Assignment #1 Container -->
-<div class="w3-container" id="home">
+<div class="w3-container" id="assignment1">
   <div class="w3-content" style="max-width:700px height">
     <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">CONVERSION</span></h5>
     <button class="accordion">Celsius to Fahrenheit</button>
@@ -178,76 +190,133 @@ for (i = 0; i < acc.length; i++) {
 <div class="w3-container" id="assignment2">
   <div class="w3-content" style="max-width:700px">
     <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">INCOME TAX CALCULATOR</span></h5>
-    <p>The Cafe was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>In addition to our full espresso and brew bar menu, we serve fresh made-to-order breakfast and lunch sandwiches, as well as a selection of sides and salads and other good stuff.</p>
-    <div class="w3-panel w3-leftbar w3-light-grey">
-      <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
-      <p>Chef, Coffeeist and Owner: Liam Brown</p>
-    </div>
-    <img src="/w3images/coffeeshop.jpg" style="width:100%;max-width:1000px" class="w3-margin-top">
-    <p><strong>Opening hours:</strong> everyday from 6am to 5pm.</p>
-    <p><strong>Address:</strong> 15 Adr street, 5015, NY</p>
+    <p>
+      <label>Net Taxable Income:</label>
+      <input id="taxableInc" type="number" placeholder="Taxable Income">
+      <button onclick="IncTaxCalculator(this.value)">Calculate</button>
+    </p>
+    <p>Income Tax: <span id="outputIncTax"></span></p>
+    <script>
+    function IncTaxCalculator(valNum) {
+      valNum = document.getElementById("taxableInc").value*1;
+      if (valNum <= 250000) {
+        document.getElementById("outputIncTax").innerHTML=valNum*0;
+      } else if (valNum >= 250001 && valNum <= 400000) {
+        document.getElementById("outputIncTax").innerHTML=(valNum-250000)*0.2;
+      } else if (valNum >= 400001 && valNum <= 800000) {
+        document.getElementById("outputIncTax").innerHTML=(valNum-400000)*0.25;
+      } else if (valNum >= 800001 && valNum <= 2000000) {
+        document.getElementById("outputIncTax").innerHTML=(valNum-800000)*0.3;
+      } else if (valNum >= 2000001 && valNum <= 8000000) {
+        document.getElementById("outputIncTax").innerHTML=(valNum-2000000)*0.32;
+      } else {
+        document.getElementById("outputIncTax").innerHTML=(valNum-8000000)*0.35;
+      }
+      }
+      </script>
   </div>
 </div>
 
-<!-- Menu Container -->
+<!-- Assignment #3 Container -->
 <div class="w3-container" id="assignment3">
   <div class="w3-content" style="max-width:700px">
- 
-    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">THE MENU</span></h5>
-  
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">FACTORIAL, SUM, AND AVERAGE OF FIRST N NATURAL NUMBERS</span></h5>
     <div class="w3-row w3-center w3-card w3-padding">
-      <a href="javascript:void(0)" onclick="openMenu(event, 'Eat');" id="myLink">
-        <div class="w3-col s6 tablink">Eat</div>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Factorial');" id="myLink">
+        <div class="w3-col s4 tablink">Factorial</div>
       </a>
-      <a href="javascript:void(0)" onclick="openMenu(event, 'Drinks');">
-        <div class="w3-col s6 tablink">Drink</div>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Sum');">
+        <div class="w3-col s4 tablink">Sum</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Average');">
+        <div class="w3-col s4 tablink">Average</div>
       </a>
     </div>
 
-    <div id="Eat" class="w3-container menu w3-padding-48 w3-card">
-      <h5>Bread Basket</h5>
-      <p class="w3-text-grey">Assortment of fresh baked fruit breads and muffins 5.50</p><br>
-    
-      <h5>Honey Almond Granola with Fruits</h5>
-      <p class="w3-text-grey">Natural cereal of honey toasted oats, raisins, almonds and dates 7.00</p><br>
-    
-      <h5>Belgian Waffle</h5>
-      <p class="w3-text-grey">Vanilla flavored batter with malted flour 7.50</p><br>
-    
-      <h5>Scrambled eggs</h5>
-      <p class="w3-text-grey">Scrambled eggs, roasted red pepper and garlic, with green onions 7.50</p><br>
-    
-      <h5>Blueberry Pancakes</h5>
-      <p class="w3-text-grey">With syrup, butter and lots of berries 8.50</p>
+    <div id="Factorial" class="w3-container menu w3-padding-48 w3-card">
+      <p class="w3-text-grey">
+        <label>Input a number for n:</label>
+        <input id="nlimit" type="number">
+        <button onclick="ComputeFactorial(this.value)">Compute</button>
+      </p>
+      <p class="w3-text-grey"><span id="ntitle"></span></p>
+      <p><span id="outputFactorial"></span></p>
+      <script>
+      function ComputeFactorial(valNum) {
+        var i,ntext;
+        valNum = document.getElementById("nlimit").value*1;
+        ntext=1;
+        i=1;
+        while (i <= valNum) {
+          ntext = ntext*i;
+          i++;
+          }
+        document.getElementById("ntitle").innerHTML=
+          "The factorial of "+valNum+" is:";
+        document.getElementById("outputFactorial").innerHTML=
+          ntext;
+      }
+      </script>
     </div>
 
-    <div id="Drinks" class="w3-container menu w3-padding-48 w3-card">
-      <h5>Coffee</h5>
-      <p class="w3-text-grey">Regular coffee 2.50</p><br>
-    
-      <h5>Chocolato</h5>
-      <p class="w3-text-grey">Chocolate espresso with milk 4.50</p><br>
-    
-      <h5>Corretto</h5>
-      <p class="w3-text-grey">Whiskey and coffee 5.00</p><br>
-    
-      <h5>Iced tea</h5>
-      <p class="w3-text-grey">Hot tea, except not hot 3.00</p><br>
-    
-      <h5>Soda</h5>
-      <p class="w3-text-grey">Coke, Sprite, Fanta, etc. 2.50</p>
+    <div id="Sum" class="w3-container menu w3-padding-48 w3-card">
+      <p class="w3-text-grey">
+        <label>Input a number for n:</label>
+        <input id="nInp" type="number">
+        <button onclick="ComputeSum(this.value)">Compute</button>
+      </p>
+      <p class="w3-text-grey"><span id="nIntro"></span></p>
+      <p><span id="outputSum"></span></p>
+      <script>
+      function ComputeSum(valNum) {
+        var i,ntext;
+        valNum = document.getElementById("nInp").value*1;
+        ntext=0;
+        i=1;
+      do {
+      ntext = ntext+i;
+          i++;
+        } while (i <= valNum);
+        document.getElementById("nIntro").innerHTML=
+          "The sum of the first "+valNum+" natural numbers are:";
+        document.getElementById("outputSum").innerHTML=
+          ntext;
+      }
+      </script>
     </div>  
-    <img src="/w3images/coffeehouse2.jpg" style="width:100%;max-width:1000px;margin-top:32px;">
+
+    <div id="Average" class="w3-container menu w3-padding-48 w3-card">
+      <p class="w3-text-grey">
+        <label>Input a number for n:</label>
+        <input id="num" type="number">
+        <button onclick="ComputeAverage(this.value)">Compute</button>
+      </p>
+      <p class="w3-text-grey"><span id="intro"></span></p>
+      <p><span id="outputAverage"></span></p>
+      <script>
+      function ComputeAverage(valNum) {
+        var i,ntext;
+        valNum = document.getElementById("num").value*1;
+        ntext=0;
+        i=1;
+        for (i = 1; i <= valNum; i++) {
+        ntext = ntext+i;
+        }
+        document.getElementById("intro").innerHTML=
+          "The average of the first "+valNum+" natural numbers are:";
+        document.getElementById("outputAverage").innerHTML=
+          ntext/valNum;
+      }
+      </script>
+    </div>
   </div>
 </div>
 
-<!-- Contact/Area Container -->
+<!-- Assignment #4 Container -->
 <div class="w3-container" id="assignment4" style="padding-bottom:32px;">
   <div class="w3-content" style="max-width:700px">
-    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">WHERE TO FIND US</span></h5>
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">SIMPLE PAYROLL</span></h5>
     <p>Find us at some address at some place.</p>
-    <img src="/w3images/map.jpg" class="w3-image" style="width:100%">
     <p><span class="w3-tag">FYI!</span> We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste.</p>
     <p><strong>Reserve</strong> a table, ask for today's special or just send us a message:</p>
     <form action="/action_page.php" target="_blank">
